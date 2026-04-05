@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intro GitHub Pages</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <main class="container">
+    <article id="content" class="markdown-body">Loading...</article>
+  </main>
+
+  <script>
+    (async () => {
+      try {
+        const res = await fetch('./content.md', { cache: 'no-store' });
+        const md = await res.text();
+        document.getElementById('content').innerHTML = marked.parse(md);
+      } catch (e) {
+        document.getElementById('content').textContent = 'Failed to load content.md';
+      }
+    })();
+  </script>
+</body>
+</html>
